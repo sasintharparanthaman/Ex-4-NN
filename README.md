@@ -1,8 +1,8 @@
 
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER Sasinthar P</H3>
+<H3>ENTER 212223230199</H3>
 <H3>EX. NO.4</H3>
-<H3>DATE:</H3>
+<H3>DATE:17.10.2025</H3>
 <H1 ALIGN =CENTER>Implementation of MLP with Backpropagation for Multiclassification</H1>
 <H3>Aim:</H3>
 To implement a Multilayer Perceptron for Multi classification
@@ -116,11 +116,109 @@ Normalize our dataset.
 
 <H3>Program:</H3> 
 
-Insert your code here
+
+```
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import confusion_matrix, classification_report
+df=pd.read_csv('heart.csv')
+df
+X = df.iloc[:, 0:13]  
+y = df.iloc[:, 13] 
+X
+y
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+mlp = MLPClassifier(hidden_layer_sizes=(12, 13, 14), activation='relu', solver='adam', max_iter=2000, random_state=42)
+mlp.fit(X_train, y_train)
+predictions = mlp.predict(X_test)
+print("\nPredictions:")
+print(predictions)
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, predictions))
+print("\nClassification Report:")
+print(classification_report(y_test, predictions))
+
+df1=pd.read_csv('heart.csv')
+df1
+a=df1.iloc[:,0:13]
+b=df1.iloc[:,13:14]
+a.head()
+b.tail()
+a_train,a_test,b_train,b_test=train_test_split(a,b,test_size=0.25,random_state=42)
+scaler=StandardScaler()
+scaler.fit(a_train)
+a_train = scaler.transform(a_train)
+a_test = scaler.transform(a_test)
+m1 = MLPClassifier(hidden_layer_sizes=(12, 13, 14), activation='relu', solver='adam', max_iter=2500, random_state=42)
+m1.fit(a_train, b_train.values.ravel())
+predicted_values = m1.predict(a_test)
+print("\nPredicted Values:")
+print(predicted_values)
+print("\nConfusion Matrix:")
+print(confusion_matrix(b_test, predicted_values))
+print("\nClassification Report:")
+print(classification_report(b_test, predicted_values))
+
+```
+
+
 
 <H3>Output:</H3>
 
-Show your results here
+### Splits training and testing data as 80-20
+
+#### Heart Dataset
+
+<img width="1001" height="556" alt="Screenshot 2025-10-04 192723" src="https://github.com/user-attachments/assets/a44733df-a59a-4ff3-ac52-80f35133e764" />
+
+#### X 
+
+<img width="931" height="556" alt="Screenshot 2025-10-04 192740" src="https://github.com/user-attachments/assets/682ee506-ee38-4420-b850-560b5e36e7cf" />
+
+#### Y
+
+<img width="931" height="556" alt="Screenshot 2025-10-04 192740" src="https://github.com/user-attachments/assets/86580931-afe9-4910-b51a-bff65df7fbca" />
+
+#### Predicted Values
+
+<img width="948" height="236" alt="Screenshot 2025-10-04 192803" src="https://github.com/user-attachments/assets/76910344-cdf3-43c1-ab88-d6742d376a24" />
+
+#### Confusion Matrix
+
+<img width="345" height="140" alt="Screenshot 2025-10-04 192811" src="https://github.com/user-attachments/assets/d9b2729c-50e2-4aa0-bda3-b0a7dcd81a89" />
+
+#### Classification Report
+
+<img width="749" height="324" alt="Screenshot 2025-10-04 192820" src="https://github.com/user-attachments/assets/9e8aa8f8-962e-434c-b7a7-c64a4af6122a" />
+
+### Splits training and testing data as 75-25
+#### Heart Dataset
+
+<img width="1031" height="550" alt="Screenshot 2025-10-04 193508" src="https://github.com/user-attachments/assets/d91cbfd7-e0e4-48ee-81f1-fe917c0e10d5" />
+
+<img width="917" height="336" alt="Screenshot 2025-10-04 193532" src="https://github.com/user-attachments/assets/1372644d-8279-4330-bb36-0d88b46f1772" />
+
+<img width="513" height="328" alt="Screenshot 2025-10-04 193546" src="https://github.com/user-attachments/assets/9a5e0463-a787-4dce-8405-af3b54c63892" />
+
+#### Predicted Values
+
+<img width="993" height="262" alt="Screenshot 2025-10-04 193601" src="https://github.com/user-attachments/assets/75f0dbfb-118d-4b5d-89f1-aff3b8511704" />
+
+#### Confusion Matrix
+<img width="283" height="144" alt="Screenshot 2025-10-04 193614" src="https://github.com/user-attachments/assets/62f2337a-2d4e-43ef-80c8-b1ac6bb0974b" />
+
+#### Classification Report
+
+<img width="763" height="320" alt="Screenshot 2025-10-04 193623" src="https://github.com/user-attachments/assets/cecce9bc-a5cb-4cc2-8011-5b443ee087c8" />
+
 
 <H3>Result:</H3>
+
 Thus, MLP is implemented for multi-classification using python.
+
